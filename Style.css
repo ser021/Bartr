@@ -1,0 +1,115 @@
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.center_button {
+    display: block;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: Castoro;
+}
+
+.login_button {
+    color: #F8F8F8;
+    padding-left: 34px;
+    padding-right: 34px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #3D85C6;
+    border-radius: 26px;
+    height: 54px;
+    min-width: 132px;
+}
+
+.registration_button {
+    color: #F8F8F8;
+    padding-left: 26px;
+    padding-right: 26px;
+    font-size: 18px;
+    font-weight: 500;
+    height: 54px;
+    min-width: 132px;
+    border-radius: 26px;
+    background-color: transparent;
+    border: 1.5px solid #F8F8F8;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid #FFE599;
+}
+
+.logo {
+    color: #FFE599;
+    font-size: 80px;
+    font-family: Castoro;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.body_text {
+    color: #F8F8F8;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 500;
+    word-wrap: break-word
+}
+
+input[type=text] {
+    width: 320px;
+    height: 78px;
+    gap: 8px;
+}
+
+input[type=password] {
+    width: 320px;
+    height: 78px;
+    gap: 8px;
+}
+
+.post_container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    width: 385px;
+    height: 500px;
+}
+
+.post_image {
+    width: 385px;
+    height: 275px;
+    border-radius: 8px;
+    border-bottom: 3px #3D85C6 solid;
+}
+
+.post_title {
+    width: 252px;
+    height: 50px;
+    color: black;
+    font-size: 50px;
+    font-family: Castoro;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.post_blurb {
+    width: 302px;
+    height: 82px;
+    color: black;
+    font-size: 18px;
+    font-family: Montserrat;
+    font-weight: 400;
+    word-wrap: break-word;
+}
