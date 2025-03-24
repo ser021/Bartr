@@ -1,45 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bartr</title>
-  <link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles.css" href='https://fonts.googleapis.com/css?family=Montserrat'>
 </head>
-<body style="background-color: #073763; align-items: center;">
-    <!--Header Container-->
-    <div style="width: 100%; height: 91px;">
-        <div style="width: 100%; height: 90px; left: 0px; top: 1px; position: absolute; border-bottom: 1px #FFE599 solid"></div>
-        <!--Log In Button-->
-        <button class="login_button" onclick="goToLogin()" style="right: 183px; top:19px; position: absolute;">Log In</button>
-        <!--Registration Button-->
-        <button class="registration_button" onclick="goToRegistration()" style="right:37px; top: 19px; position: absolute;">Register</button>
-        <!--Logo-->
-        <div style="width: 185px; height: 73px; left: 37px; top: 0px; position: absolute; color: #FFE599; font-size: 80px; font-family: Castoro; font-weight: 400; word-wrap: break-word">Bartr</div>
-    </div>
-    <!--Hero Section-->
-    <div class="center" style="width: 1245px; height: 615px; justify-self: center; position: relative;">
-        <!--Log In Button 2-->
-        <button class="login_button" onclick="goToLogin()" style="left: 839px; top: 519px; position:absolute;">Log In</button>
-        <!--Registration Button 2-->
-        <button class="registration_button" onclick="goToRegistration()" style="left:985px; top:519px; position:absolute;">Register</button>
-        <!--Image-->
-        <img style="width: 825px; height: 615px; left: 0px; top: 0px; position: absolute" src="https://placehold.co/825x615" />
-        <!--Blurb-->
-        <p1 class="body_text" style="width: 405px; left: 840px; top: 164px; position: absolute;">Bartr is a barter and trade website where people can exchange goods and services without using money. Users can list items or skills they’re willing to trade and browse offers from others in their community or beyond. The platform fosters a collaborative economy, allowing individuals to save money, reduce waste, and connect with like-minded traders. Whether trading handmade crafts for home repairs or tutoring for fresh produce, the possibilities are endless!</p1>
-        <!--Title-->
-        <h1 class="logo" style="width: 185px; height: 80px; left: 839px; top: 40px; position: absolute;">Bartr</h1>
-    </div>
-<!-- </div> -->
-<script>
-    function goToLogin() {
-        // Navigate to the login page
-        window.location.href = "login.php";
-    }
-    function goToRegistration() {
-        // Navigate to Registration
-        window.location.href = "registration.php"
-    }
-</script>
+<body>
+    <nav>
+        <div class="logo">Bartr</div>
+        <div class="links">
+            <a href="login.php">Log In</a>
+            <a href="register.php">Register</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="herosection">
+            <div class="heroimage">
+                <img src="images/hero image.jpeg" alt="" style= "height: 615 px; width: 825 px">
+            </div>
+            <div class="blurb" style="width:405px;">
+                <div class="logo">Bartr</div><br>
+                <p>Bartr is a barter and trade website where people can exchange goods and services without using money. Users can list items or skills they're willing to trade and browse offers from others in their community or beyond. The platform fosters a collaborative economy, allowing individuals to save money, reduce waste, and connect with like-minded traders. Whether trading handmade crafts for home repairs or tutoring for fresh produce, the possibilities are endless!</p><br><br>
+                <a href="login.php">Log In</a>
+                <a href="register.php">Register</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
