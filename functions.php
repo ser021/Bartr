@@ -98,3 +98,41 @@
         }
         return $data;
     }
+
+    function addPost($user_id, $title, $description, $images = null){
+        $mysqli = dbConnect();
+        $stmt = $mysqli->prepare("INSERT INTO listings (owner_id, title, description, images, created_at VALUES (?, ?, ?, ?, NOW())");
+        $stmt->bind_param("isss", $user_id, $title, $description, $images);
+        return $stmt ->execute();
+    }
+
+    function deletePost($post_id, $user_id){
+        $mysqli = dbConnect();
+        $stmt = $mysqli->prepare("DELETE FROM listings WHERE id = ? AND owner_id = ?");
+        $stmt->bind_param("ii", $post_id, $user_id);
+        return $stmt ->execute();
+    }
+
+    function searchListings($searchTerm = '', $user_id = null){
+        $mysqli = dbConnect();
+        $sql = "SELECT * FROM listings WHERE (title LIKE ? OR description LIKE ?)";
+        if ($user_id !== null){
+            $sql .= "AND owner_id = ?";
+        }
+        $stmt = $mysqli->prepare($sql);
+
+        if ($user_id !== null) {
+            $searchTerm = "%$searchTerm%";
+            $stmt->bind_param("ssi", $searchTerm, $user_id);
+        } else {
+            $searchTerm = "%$searchTerm%";
+            $stmt->bind_param("ss", $searchTerm, $searchTerm);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
