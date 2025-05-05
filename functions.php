@@ -19,18 +19,18 @@
                 $user_data = mysqli_fetch_assoc($result);
                 return $user_data;
             } else {
-                echo "User not found.";
-                return null; // Ensure this returns null if no user is found
+                header("Location: login.php?error=notloggedin");
+                exit();
             }
         } else {
-            echo "Session not set.";
-            return null; // Return null if session is not set
+            header("Location: login.php?error=notloggedin");
+            exit();
         }
     }
 	// products table every unique post id, then putting it into an array with the row of data corresponding to it 
-	function getListings($int){
+	function getListings($int, $user_id){
         $mysqli = dbConnect();
-        $result = $mysqli->query("SELECT * FROM listings ORDER BY rand() LIMIT $int");
+        $result = $mysqli->query("SELECT * FROM listings WHERE owner_id != $user_id ORDER BY rand() LIMIT $int");
         while ($row = $result->fetch_assoc()){
            $data[] = $row;
         }
@@ -98,7 +98,7 @@
         }
         return $data;
     }
-
+    
     function addPost($user_id, $title, $description, $images = null){
         $mysqli = dbConnect();
         $stmt = $mysqli->prepare("INSERT INTO listings (owner_id, title, description, images, created_at VALUES (?, ?, ?, ?, NOW())");
@@ -136,3 +136,29 @@
         }
         return $data;
     }
+    function getProfileById($id) {
+        $mysqli = dbConnect();
+        $stmt = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
+        return $data;
+    }
+    // Check if a username already exists
+function getUserByUsername($username) {
+    $mysqli = dbConnect();
+    $stmt = $mysqli->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+}
+
+// Update the user's profile information
+function updateUserProfile($user_id, $username, $bio, $profile_pic_path) {
+    $mysqli = dbConnect();
+    $stmt = $mysqli->prepare("UPDATE users SET username = ?, bio = ?, profile_pic = ? WHERE id = ?");
+    $stmt->bind_param("sssi", $username, $bio, $profile_pic_path, $user_id);
+    return $stmt->execute();
+}
