@@ -5,10 +5,10 @@
     if(isset($_GET['title'])){
         $title = urldecode($_GET['title']);
     }else{
-        header("Location: index.php");
+        header("Location: home.php");
         exit();
     }
-    $listing = getListingByTitle($title)
+    $listing = getListingByTitle($title);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +25,7 @@
             <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
             <a href="messages.php">Messages</a>
+            <a href="addPost.php">Add Post</a>
         </div>
     </nav>
 
@@ -36,12 +37,20 @@
             </div>
             <div class="pfp">
                 <?php $op_info = getOwnerProfileByListing($listing[0]['owner_id'])?>
-                <img width="100px" height="100px" style="object-fit:cover;" src="<?php echo "{$op_info[0]['profile_pic']}"?>" alt="">
+                <a href="profile.php?user_id=<?= $listing[0]['owner_id'] ?>">
+                    <img width="100px" height="100px" style="object-fit:cover; cursor: pointer;" src="<?= htmlspecialchars($op_info[0]['profile_pic']) ?>" alt="Profile Picture">
+                </a>
             </div>
             <div class="title"> <?php echo($listing[0]['title'])?> </div>
             <div class="description"><?php echo($listing[0]['description'])?></div><br>
-            <div class="messagebtn" class="center">
-                <a href="messages.php">Message</a>
+            <div class="button-container">
+                <button class="messagebtn" onclick="window.location.href='messages.php'">Message</button>
+                <?php if ((int)$user_data['id'] === (int)$listing[0]['owner_id']): ?>
+                    <form method="POST" action="deletePost.php" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                        <input type="hidden" name="post_id" value="<?= $listing[0]['id'] ?>">
+                        <button type="submit" class="deletebtn">Delete Post</button>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
     </main>
